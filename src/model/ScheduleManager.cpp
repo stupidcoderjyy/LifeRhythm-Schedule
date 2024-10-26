@@ -1,0 +1,20 @@
+//
+// Created by JYY on 24-10-27.
+//
+
+#include "ScheduleManager.h"
+#include "RuleManager.h"
+
+USING_NAMESPACE(lr::schedule)
+
+ScheduleManager::ScheduleManager(RuleManager *ruleManager): ruleManager(ruleManager) {
+}
+
+void ScheduleManager::update(const QDateTime &now) {
+    if (now.date() != today) {
+        items = {};
+        today = now.date();
+        ruleManager->getSchedules(items, today);
+        //TODO ModuleSchedule::onItemsUpdated(items);
+    }
+}
