@@ -5,8 +5,9 @@
 #ifndef RULEMANAGER_H
 #define RULEMANAGER_H
 #include <IOManager.h>
-
 #include "Rule.h"
+
+BEGIN_NAMESPACE(lr::schedule)
 
 class RuleManager final : public AbstractLoader {
 private:
@@ -21,5 +22,7 @@ protected:
     void clear() override;
     void save(IByteWriter *out) override;
 };
+
+END_NAMESPACE
 
 #endif //RULEMANAGER_H

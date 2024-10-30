@@ -3,6 +3,23 @@
 //
 
 #include "Rule.h"
+#include <utility>
+
+USING_NAMESPACE(lr::schedule)
+
+ScheduleItem::ScheduleItem(QDateTime time, QString info) : time(std::move(time)), info(std::move(info)) {}
+
+NBT * ScheduleItem::toNbt() {
+    auto nbt = new NBT;
+    nbt->putString("info")->setVal(info);
+    nbt->putLong("time")->setVal(time.toTime_t());
+    return nbt;
+}
+
+void ScheduleItem::fromNbt(NBT *nbt) {
+    info = nbt->getString("info");
+    time = QDateTime::fromTime_t(nbt->getLong("time"));
+}
 
 AbstractRule::AbstractRule(int ruleId): id(ruleId) {
 }
@@ -37,7 +54,7 @@ void WeeklyRule::getSchedules(QVector<ScheduleItem> &list, const QDate &date) {
     }
 }
 
-#define DATE_2_INT(d) d.year() << 12 | d.month() << 8 | d.day()
+#define DATE_2_INT(d) (d.year() << 12 | d.month() << 8 | d.day())
 #define INT_2_DATE(i) QDate(i >> 12, (i >> 8) & 0xf, i & 0xff)
 
 NBT * WeeklyRule::toNbt() {

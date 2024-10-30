@@ -5,16 +5,19 @@
 #ifndef RULE_H
 #define RULE_H
 
+#include <Namespaces.h>
 #include <QDate>
 #include "NBTSerializable.h"
 #include "OpenRange.h"
 
-struct ScheduleItem {
+BEGIN_NAMESPACE(lr::schedule)
+
+struct ScheduleItem : public NBTSerializable {
     QDateTime time;
     QString info;
-    QString toString() const {
-        return time.toString("yyyy-MM-dd hh:mm") + "  " + info;
-    }
+    ScheduleItem(QDateTime time, QString info);
+    NBT * toNbt() override;
+    void fromNbt(NBT *nbt) override;
 };
 
 class AbstractRule : public NBTSerializable {
@@ -54,5 +57,7 @@ public:
     NBT * toNbt() override;
     void fromNbt(NBT *nbt) override;
 };
+
+END_NAMESPACE
 
 #endif //RULE_H

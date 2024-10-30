@@ -5,6 +5,8 @@
 #include "RuleManager.h"
 #include "MemUtil.h"
 
+USING_NAMESPACE(lr::schedule)
+
 RuleManager::RuleManager() {
     registerRuleBuilder(0, [] {
         return new WeeklyRule();

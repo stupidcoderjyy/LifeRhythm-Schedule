@@ -4,6 +4,7 @@
 
 #include "ScheduleManager.h"
 #include "RuleManager.h"
+#include "Sync.h"
 
 USING_NAMESPACE(lr::schedule)
 
@@ -15,6 +16,6 @@ void ScheduleManager::update(const QDateTime &now) {
         items = {};
         today = now.date();
         ruleManager->getSchedules(items, today);
-        //TODO ModuleSchedule::onItemsUpdated(items);
+        Sync::onScheduleItemsUpdated(&items);
     }
 }

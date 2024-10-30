@@ -20,6 +20,7 @@ set(INCLUDES
 
 set(INCLUDE_FILES
         include/ModuleSchedule.h
+        include/Sync.h
         include/model/Rule.h
         include/model/RuleManager.h
         include/model/ScheduleManager.h
@@ -28,6 +29,7 @@ set(INCLUDE_FILES
 set(SRC_FILES
         Plugin.cpp
         src/ModuleSchedule.cpp
+        src/Sync.cpp
         src/model/Rule.cpp
         src/model/RuleManager.cpp
         src/model/ScheduleManager.cpp

@@ -9,9 +9,9 @@
 #include <TickHandler.h>
 #include "Rule.h"
 
-class RuleManager;
-
 BEGIN_NAMESPACE(lr::schedule)
+
+class RuleManager;
 
 class ScheduleManager final : public ITickListener {
 private:
